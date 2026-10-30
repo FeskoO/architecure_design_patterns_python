@@ -48,6 +48,11 @@ graph TB
 
     getAct -->|reads| a1[activities.json]
     postAct -->|writes| a2[activities.json]
+    postAct -->|reads| a2[activities.json]
+    postLog -->|reads| logs1[logs.json]
+    postLog -->|reads| notes1[notices.json]
+    undo -->|reads| logs2[logs.json]
+    targets -->|calls| macros[Macros API]
     postLog -->|reads| a3[activities.json]
     postLog -->|writes| logs1[logs.json]
     postLog -->|writes| notes1[notices.json]
@@ -62,7 +67,6 @@ graph TB
     targets -->|reads| a5[activities.json]
     targets --> bands[LIFESTYLE_ACTIVITY]
     bands --> names[ACTIVITY_FOR_API]
-    names -->|calls| macros[Macros API]
     Handlers -->|each call updates| requests
 ```
 
